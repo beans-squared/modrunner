@@ -1,0 +1,54 @@
+{
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "firefox",
+			"request": "launch",
+			"name": "client: firefox",
+			"url": "http://localhost:3000",
+			"webRoot": "${workspaceFolder}",
+			"pathMappings": [
+				{
+					"url": "http://localhost:3000/_nuxt/composables",
+					"path": "${workspaceFolder}/composables"
+				},
+				{
+					"url": "http://localhost:3000/_nuxt/pages",
+					"path": "${workspaceFolder}/pages"
+				}
+			]
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "Nuxt Server (Local Env)",
+			"outputCapture": "std",
+			"program": "${workspaceFolder}/node_modules/nuxi/bin/nuxi.mjs",
+			"args": ["dev", "--dotenv", ".env.local"]
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "Nuxt Server (Staging Env)",
+			"outputCapture": "std",
+			"program": "${workspaceFolder}/node_modules/nuxi/bin/nuxi.mjs",
+			"args": ["dev", "--dotenv", ".env.staging"]
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "server: nuxt",
+			"outputCapture": "std",
+			"program": "${workspaceFolder}/node_modules/nuxi/bin/nuxi.mjs",
+			"args": ["dev"]
+		}
+	],
+	"compounds": [
+		{
+			"name": "fullstack: nuxt",
+			"configurations": ["server: nuxt", "client: firefox"]
+		}
+	]
+}
