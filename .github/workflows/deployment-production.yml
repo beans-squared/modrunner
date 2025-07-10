@@ -18,5 +18,6 @@ jobs:
           username: root
           key: ${{ secrets.KEY }}
           script: |
+            cd modrunner
             cd discord-bot
             git pull
