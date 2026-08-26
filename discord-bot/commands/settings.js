@@ -19,18 +19,18 @@ module.exports = {
           name: 'Normal',
           value: 'normal',
         },
-				{
+        {
           name: 'Normal - Alternate',
           value: 'alt',
         },
         {
           name: 'Compact',
           value: 'compact',
-        },
-        {
-          name: 'AI-Generated (Beta)',
-          value: 'ai',
         }
+        // {
+        //   name: 'AI-Generated (Beta)',
+        //   value: 'ai',
+        // }
       )
     ),
   async execute(interaction) {

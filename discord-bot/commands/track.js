@@ -33,7 +33,7 @@ module.exports = {
     const project = await Projects.fetch(projectId);
     if (!project) return await interaction.editReply(`:warning: No project exists with ID **${projectId}**.`);
 
-    logger.info(`User ${interaction.user.tag} made a tracking request for project ${project.name} (${project.id}).`);
+    logger.info(`User ${interaction.user.tag} (${interaction.user.id}) made a tracking request for project ${project.name} (${project.id}).`);
 
     // Find how many projects this guild is already tracking
     // If greater than the guild's max allowed tracked projects (usually 100), don't allow this project to be tracked

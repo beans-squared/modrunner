@@ -1,5 +1,9 @@
 # Changelog
 
+## \[1.5.3] (2026-08-26)
+
+- Disabled the AI notification type
+
 ## \[1.5.2] (2025-10-10)
 
 - Fixed notifications not being sent for some Modrinth projects
