@@ -10,10 +10,10 @@ module.exports = {
     .addStringOption((option) => option.setName('projectid').setDescription('The ID of the project to stop tracking.'))
     .addChannelOption((option) => option.setName('channel').setDescription('The channel to stop updates being posted to.')),
   async execute(interaction) {
-    const projectId = interaction.options.getString('projectid');
-    const channel = interaction.options.getChannel('channel');
-
     await interaction.deferReply();
+		
+		const projectId = interaction.options.getString('projectid');
+    const channel = interaction.options.getChannel('channel');
 
     logger.info(`User ${interaction.user.tag} (${interaction.user.id}) sent an untrack request.`);
 

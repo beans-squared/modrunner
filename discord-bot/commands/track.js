@@ -17,11 +17,11 @@ module.exports = {
     )
     .addRoleOption((option) => option.setName('role').setDescription('A role that you want to mention when this project sends an update notification.')),
   async execute(interaction) {
+    await interaction.deferReply();
+
     const projectId = interaction.options.getString('projectid');
     const channel = interaction.options.getChannel('channel') ?? interaction.channel;
     const role = interaction.options.getRole('role');
-
-    await interaction.deferReply();
 
     // Check if the client can see the channel to post updates to
     if (!channel.viewable) {

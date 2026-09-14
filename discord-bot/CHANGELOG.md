@@ -1,5 +1,9 @@
 # Changelog
 
+## \[1.5.4] (2026-09-14)
+
+- Possible fix for slash commands sometimes failing due to timeout
+
 ## \[1.5.3] (2026-08-26)
 
 - Disabled the AI notification type
