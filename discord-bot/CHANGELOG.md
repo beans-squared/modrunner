@@ -1,5 +1,9 @@
 # Changelog
 
+## \[1.5.5] (2026-09-15)
+
+- Patched minor security vulnerability in the API
+
 ## \[1.5.4] (2026-09-14)
 
 - Possible fix for slash commands sometimes failing due to timeout

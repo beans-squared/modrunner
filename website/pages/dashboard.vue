@@ -108,7 +108,12 @@
 
 							<h2>Tracked Projects Settings</h2>
 							<p>Maximum Characters for Changelogs</p>
-							<input type="text" :value="selectedGuild.settings.changelogLength" @focusout="saveMaxChars($event)" :disabled="(selectedGuild.permissions & 0x20) !== 0x20"/>
+							<input
+								type="text"
+								:value="selectedGuild.settings.changelogLength"
+								@focusout="saveMaxChars($event)"
+								:disabled="(selectedGuild.permissions & 0x20) !== 0x20"
+							/>
 							<p>Notification Style</p>
 							<select @change="saveNotificationStyle($event)" :disabled="(selectedGuild.permissions & 0x20) !== 0x20">
 								<option value="normal" :selected="selectedGuild.settings.notificationStyle === 'normal' ? true : false">Normal</option>
@@ -393,6 +398,7 @@ async function trackProject() {
 			guildId: selectedGuild.value.id,
 			roleIds: trackProjectData.value.roleIds,
 			userId: auth.value.user.id,
+			authToken: auth.value.accessToken,
 		},
 		ignoreResponseError: true,
 	})
@@ -424,6 +430,7 @@ async function untrackProject() {
 			channelId: editingProjectData.value.channel.id,
 			guildId: selectedGuild.value.id,
 			userId: auth.value.user.id,
+			authToken: auth.value.accessToken,
 		},
 		ignoreResponseError: true,
 	})
@@ -463,6 +470,7 @@ async function editProject() {
 			},
 			guildId: selectedGuild.value.id,
 			userId: auth.value.user.id,
+			authToken: auth.value.accessToken,
 		},
 		ignoreResponseError: true,
 	})
@@ -493,6 +501,7 @@ async function saveMaxChars(event) {
 			changelogLength: event.target.value,
 			guildId: selectedGuild.value.id,
 			userId: auth.value.user.id,
+			authToken: auth.value.accessToken,
 		},
 		ignoreResponseError: true,
 	})
@@ -516,6 +525,7 @@ async function saveNotificationStyle(event) {
 			notificationStyle: event.target.value,
 			guildId: selectedGuild.value.id,
 			userId: auth.value.user.id,
+			authToken: auth.value.accessToken,
 		},
 		ignoreResponseError: true,
 	})

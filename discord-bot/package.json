@@ -1,6 +1,6 @@
 {
   "name": "modrunner",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "private": true,
   "main": "bot.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "eslint-fix": "eslint fix .",
     "build": "npm run register-globally && npm run alter-db",
     "start": "doppler run -- node .",
-    "dev": "doppler run --command=\"nodemon .\"",
+    "dev": "doppler run --command=\"node .\"",
     "register": "doppler run --command=\"node scripts/register-commands.js\"",
     "register-globally": "doppler run --command=\"node scripts/register-commands.js --global\"",
     "create-db": "node scripts/initialize-database.js",
