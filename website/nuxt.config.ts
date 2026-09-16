@@ -99,7 +99,7 @@ export default defineNuxtConfig({
 })
 
 function getDomain() {
-	if (process.env.CF_PAGES_BRANCH === 'production') {
+	if (process.env.CF_PAGES_BRANCH === 'main') {
 		return 'https://modrunner.net'
 	} else if (process.env.CF_PAGES_BRANCH === 'staging') {
 		return 'https://staging.modrunner.net'
