@@ -44,7 +44,7 @@ module.exports = {
     // If the guild has no tracked projects
     if (projects.length === 0)
       return await interaction.editReply(
-        `There aren't any projects currently tracked in this ${channel ? 'channel' : 'server'}. Add some by using the ${inlineCode('/track')} command!`
+        `There aren't any projects currently tracked in this ${channel ? 'channel' : 'server'}. Add some by using the ${inlineCode('/track')} command, or by using the [online dashboard](https://modrunner.net/dashboard).`
       );
 
     // Organize the data formatting so we can get every channel for each project
@@ -76,7 +76,7 @@ module.exports = {
       .setDescription(
         `**Projects: ${projects.length}${channel ? '' : '/'}${
           channel ? '' : guildSettings.maxProjects
-        }**\n\nProjects are listed alphabetically.\nTo manage your tracked projects, use the ${inlineCode('/track')} and ${inlineCode('/untrack')} commands.`
+        }**\n\nProjects are listed alphabetically.\nTo manage your tracked projects, use the ${inlineCode('/track')} and ${inlineCode('/untrack')} commands, or by using the [online dashboard](https://modrunner.net/dashboard).`
       )
       .setFooter({ text: 'Page 1' });
     const pagesToMake = Math.ceil((numberOfProjects - 25) / 25);

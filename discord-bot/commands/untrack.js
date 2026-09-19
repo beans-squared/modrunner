@@ -19,7 +19,7 @@ module.exports = {
 
     if (channel && projectId) {
       const project = await Projects.fetch(projectId);
-      if (!project) return await interaction.editReply(':x: That project does not exist.');
+      if (!project) return await interaction.editReply(':x: No project exists with that ID on any supported platform.');
 
       const untrackedProjects = await TrackedProjects.destroy({
         where: {
@@ -28,8 +28,8 @@ module.exports = {
           projectId: projectId,
         },
       });
-      if (untrackedProjects === 0) return await interaction.editReply(`:warning: Project **${project.name}** is not being tracked in ${channel}.`);
-      return await interaction.editReply(`:white_check_mark: Successfully removed project **${project.name}** from tracking in channel ${channel}.`);
+      if (untrackedProjects === 0) return await interaction.editReply(`:warning: Project **${project.name}** (${project.id}) on ${project.platform} is not being tracked in ${channel}.`);
+      return await interaction.editReply(`:white_check_mark: Successfully removed project **${project.name}** (${project.id}) on ${project.platform} from tracking in channel ${channel}.`);
     } else if (channel) {
       const untrackedProjects = await TrackedProjects.destroy({
         where: {
@@ -38,7 +38,7 @@ module.exports = {
         },
       });
       if (untrackedProjects === 0) return await interaction.editReply(`:warning: There aren't any projects being tracked in ${channel}.`);
-      return await interaction.editReply(`:white_check_mark: Successfully removed **${untrackedProjects}** from tracking in ${channel}.`);
+      return await interaction.editReply(`:white_check_mark: Successfully removed **${untrackedProjects}** projects from tracking in ${channel}.`);
     } else if (projectId) {
       const project = await Projects.fetch(projectId);
       if (!project) return await interaction.editReply(':x: That project does not exist.');
@@ -49,8 +49,8 @@ module.exports = {
           projectId: projectId,
         },
       });
-      if (untrackedProjects === 0) return await interaction.editReply(`:warning: Project **${project.name}** is not being tracked in this server.`);
-      return await interaction.editReply(`:white_check_mark: Successfully removed project **${project.name}** from tracking from all channels.`);
+      if (untrackedProjects === 0) return await interaction.editReply(`:warning: Project **${project.name}** (${project.id}) on ${project.platform} is not being tracked in this server.`);
+      return await interaction.editReply(`:white_check_mark: Successfully removed project **${project.name}** (${project.id}) on ${project.platform} from tracking from all channels.`);
     } else {
       const confirmDialog = await interaction.editReply({
         content: ':warning: **WARNING** This will untrack every project being tracked in this server. Are you sure this is what you want to do?',
@@ -93,7 +93,7 @@ module.exports = {
           },
         });
 
-        return await interaction.editReply(`:white_check_mark: Successfully removed **${untrackedProjects}** from tracking in this server.`);
+        return await interaction.editReply(`:white_check_mark: Successfully removed **${untrackedProjects}** projects from tracking in this server.`);
       } else {
         logger.debug('Untrack request cancelled.');
         return await interaction.editReply('Untrack request cancelled. No projects were untracked.');

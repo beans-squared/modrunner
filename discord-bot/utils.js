@@ -431,6 +431,7 @@ function embedColorData(platform) {
 }
 
 function trimChangelog(changelog, maxLength) {
+	if (changelog === '') return 'No changelog provided.'
   const formattedChangelog = formatHtmlChangelog(changelog);
   return formattedChangelog.length > maxLength ? `${formattedChangelog.slice(0, maxLength - 3)}...` : formattedChangelog;
 }

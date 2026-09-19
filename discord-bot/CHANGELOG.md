@@ -1,5 +1,15 @@
 # Changelog
 
+## \[1.5.6] (2026-09-19)
+
+### Changed
+
+- Added additional information such as project IDs and platform names to various confirmation messages
+
+### Fixed
+
+- Crash related to project releases with no provided changelog
+
 ## \[1.5.5] (2026-09-15)
 
 - Patched minor security vulnerability in the API

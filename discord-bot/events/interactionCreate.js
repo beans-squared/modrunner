@@ -34,7 +34,7 @@ module.exports = {
         // Fetch the project from the database
         // If the project isn't there, it calls the API and adds it
         const project = await Projects.fetch(projectId);
-        if (!project) return await interaction.editReply(`:warning: No project exists with ID **${projectId}**.`);
+        if (!project) return await interaction.editReply(`:warning: No project exists with ID **${projectId}** on any supported platform.`);
 
         logger.info(`User ${interaction.user.tag} made a tracking request for project ${project.name} (${project.id}).`);
 
@@ -55,7 +55,7 @@ module.exports = {
         const trackRequest = await project.track(interaction.guild.id, channel.id);
         if (!trackRequest[1]) return await interaction.editReply(`:warning: Project **${project.name}** is already tracked in ${channel}.`);
 
-        return await interaction.editReply(`:white_check_mark: Project **${project.name}** tracked successfully. Its updates will be posted to ${channel}.`);
+        return await interaction.editReply(`:white_check_mark: Project **${project.name}** (${project.id}) on ${project.platform} tracked successfully. Its updates will be posted to ${channel}.`);
       } else if (interaction.customId.startsWith('more:')) {
         await interaction.deferReply();
 

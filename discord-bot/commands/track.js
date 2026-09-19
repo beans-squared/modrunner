@@ -31,9 +31,9 @@ module.exports = {
     // Fetch the project from the database
     // If the project isn't there, it calls the API and adds it
     const project = await Projects.fetch(projectId);
-    if (!project) return await interaction.editReply(`:warning: No project exists with ID **${projectId}**.`);
+    if (!project) return await interaction.editReply(`:warning: No project exists with ID **${projectId}** on any supported platform.`);
 
-    logger.info(`User ${interaction.user.tag} (${interaction.user.id}) made a tracking request for project ${project.name} (${project.id}).`);
+    logger.info(`User ${interaction.user.tag} (${interaction.user.id}) made a tracking request for project ${project.name} (${project.id}) on ${project.platform}.`);
 
     // Find how many projects this guild is already tracking
     // If greater than the guild's max allowed tracked projects (usually 100), don't allow this project to be tracked
@@ -42,7 +42,7 @@ module.exports = {
       guildSettings = await Guilds.create({
         id: interaction.guild.id,
       });
-      logger.info(`Initialized settings for guild ${interaction.guild.name} (${interaction.guild.id})`);
+      logger.info(`Initialized default settings for guild ${interaction.guild.name} (${interaction.guild.id})`);
     }
 
     const currentlyTracked = await TrackedProjects.count({
@@ -65,7 +65,7 @@ module.exports = {
         await trackedProject.addRoles([role]);
         return await interaction.editReply(`:white_check_mark: The role **${role.name}** will now be notified when this project receives updates.`);
       } else {
-        return await interaction.editReply(`:warning: Project **${project.name}** is already tracked in ${channel}.`);
+        return await interaction.editReply(`:warning: Project **${project.name}** (${project.id}) on ${project.platform} is already tracked in ${channel}.`);
       }
     } else {
       if (role) {
@@ -75,7 +75,7 @@ module.exports = {
           `:white_check_mark: Project **${project.name}** tracked successfully. Its updates will be posted to ${channel}, and the role **${role.name}** will be notified.`
         );
       } else {
-        return await interaction.editReply(`:white_check_mark: Project **${project.name}** tracked successfully. Its updates will be posted to ${channel}.`);
+        return await interaction.editReply(`:white_check_mark: Project **${project.name}** (${project.id}) on ${project.platform} tracked successfully. Its updates will be posted to ${channel}.`);
       }
     }
   },
