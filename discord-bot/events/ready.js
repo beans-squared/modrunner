@@ -224,27 +224,11 @@ async function checkForProjectUpdates(client) {
 
 async function updatePresenceData(client) {
   let projects = await Projects.findAndCountAll();
-  for (const project of projects.rows) {
-    const tracked = await TrackedProjects.findOne({
-      where: {
-        projectId: project.id,
-      },
-    });
-    if (!tracked) {
-      await Projects.destroy({
-        where: {
-          id: project.id,
-        },
-      });
-      projects.count--;
-    }
-  }
-
   client.user.setPresence({
     activities: [
       {
-        type: ActivityType.Watching,
-        name: `${projects.count} projects for updates in ${client.guilds.cache.size} servers.`,
+        type: ActivityType.Custom,
+        name: `Watching ${projects.count} projects for updates in ${client.guilds.cache.size} servers.`,
       },
     ],
     status: 'online',
