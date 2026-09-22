@@ -1,0 +1,24 @@
+{
+	"name": "backend",
+	"version": "1.0.0",
+	"type": "module",
+	"main": "index.ts",
+	"scripts": {
+		"dev": "npx tsx src/index.ts"
+	},
+	"devDependencies": {
+		"@types/node": "^26.6.2",
+		"@types/node-ipc": "^9.2.3",
+		"drizzle-kit": "^1.0.0-rc.4",
+		"tsx": "^4.23.15",
+		"typescript": "^7.0.2"
+	},
+	"dependencies": {
+		"@libsql/client": "^0.18.0",
+		"cron": "^4.4.0",
+		"drizzle-orm": "^1.0.0-rc.4",
+		"node-ipc": "^14.0.0",
+		"pino": "^10.3.1",
+		"pino-pretty": "^13.1.3"
+	}
+}

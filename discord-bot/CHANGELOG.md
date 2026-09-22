@@ -1,14 +1,13 @@
 # Changelog
 
+## \[1.5.7] (2026-09-22)
+
+- Removed project table sweep code from discord presence update function
+
 ## \[1.5.6] (2026-09-19)
 
-### Changed
-
 - Added additional information such as project IDs and platform names to various confirmation messages
-
-### Fixed
-
-- Crash related to project releases with no provided changelog
+- Fixed crash related to project releases with no provided changelog
 
 ## \[1.5.5] (2026-09-15)
 

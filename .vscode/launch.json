@@ -1,0 +1,26 @@
+{
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Debug - backend",
+			"type": "node",
+			"request": "launch",
+			"program": "backend/src/index.ts",
+			"runtimeExecutable": "tsx",
+			"console": "integratedTerminal",
+			"internalConsoleOptions": "neverOpen",
+			"skipFiles": ["<node_internals>/**", "${workspaceFolder}/node_modules/**"]
+		},
+		{
+			"name": "Debug - discord-bot",
+			"type": "node-terminal",
+			"request": "launch",
+			"skipFiles": ["<node_internals>/**"],
+			"command": "doppler run -- node .",
+			"outputCapture": "std"
+		}
+	]
+}
