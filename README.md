@@ -14,14 +14,15 @@ Try out Modrunner by [inviting the bot to your Discord server](https://discord.c
 
 ## Development
 
-This codebase consists of the Discord bot and website. For more detailed information about each, refer to their respective READMEs:
+This codebase consists of the backend, Discord bot and website. For more detailed information about each, refer to their respective READMEs:
 
+- [Backend](./backend/README.md)
 - [Discord Bot](./discord-bot/README.md)
 - [Website](./website/README.md)
 
 ## Contributing
 
-Please check the [development board](https://github.com/smcmo/modrunner-bot/projects), or the [currently open issues](../../issues) before getting started.
+Please check the [roadmap](https://trello.com/b/PA4wqBpT/modrunner-roadmap), or the [currently open issues](../../issues) before getting started.
 See [Contributing](./CONTRIBUTING.md) for more detailed information.
 
 ## Security
