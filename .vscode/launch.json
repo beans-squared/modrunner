@@ -5,22 +5,31 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "Debug - backend",
+			"name": "Run Backend",
 			"type": "node",
 			"request": "launch",
-			"program": "backend/src/index.ts",
+			"program": "${workspaceFolder}/backend/src/index.ts",
 			"runtimeExecutable": "tsx",
-			"console": "integratedTerminal",
+			"envFile": "${workspaceFolder}/backend/.env",
+			"console": "externalTerminal",
 			"internalConsoleOptions": "neverOpen",
-			"skipFiles": ["<node_internals>/**", "${workspaceFolder}/node_modules/**"]
+			"skipFiles": ["<node_internals>/**"]
 		},
 		{
-			"name": "Debug - discord-bot",
+			"name": "Run Discord Bot",
 			"type": "node-terminal",
 			"request": "launch",
-			"skipFiles": ["<node_internals>/**"],
-			"command": "doppler run -- node .",
-			"outputCapture": "std"
+			"command": "node discord-bot/bot.js",
+			"internalConsoleOptions": "neverOpen",
+			"envFile": "${workspaceFolder}/discord-bot/.env",
+			"skipFiles": ["<node_internals>/**"]
+		}
+	],
+	"compounds": [
+		{
+			"name": "Run Backend+Discord Bot",
+			"configurations": ["Run Backend", "Run Discord Bot"],
+			"stopAll": true
 		}
 	]
 }

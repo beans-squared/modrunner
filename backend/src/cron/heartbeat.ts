@@ -7,5 +7,6 @@ export default new CronJob('0 */5 * * * *', () => {
 		logger.info('Heartbeat cronjob started.')
 	} else {
 		logger.warn('There is no defined heartbeat url.')
+		logger.info('Skipping heartbeat initialziation; assuming this is a dev enviroment.')
 	}
 })
