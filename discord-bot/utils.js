@@ -6,12 +6,6 @@ const { listProjectVersions } = require('./api/modrinth');
 const { TrackedProjects, Guilds } = require('./database/db');
 const { EmbedBuilder, codeBlock, ActionRowBuilder, ButtonBuilder, ButtonStyle, PermissionsBitField } = require('discord.js');
 const dayjs = require('dayjs');
-const { Configuration, OpenAIApi } = require('openai');
-
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
 
 module.exports = {
   /**
@@ -28,7 +22,8 @@ module.exports = {
         // Call the CurseForge API to get this file's changelog
         const response = await getModFileChangelog(requestedProject.id, requestedProject.latestFiles[requestedProject.latestFiles.length - 1].id);
         if (!response) return logger.warn(`A request to CurseForge timed out while getting the changelog for project ${dbProject.name} (${dbProject.id}).`);
-        if (response.statusCode !== 200) return logger.warn(`Unexpected ${response.statusCode} status code while getting the changelog for project ${dbProject.name} (${dbProject.id}).`);
+        if (response.statusCode !== 200)
+          return logger.warn(`Unexpected ${response.statusCode} status code while getting the changelog for project ${dbProject.name} (${dbProject.id}).`);
 
         const rawData = await getJSONResponse(response.body);
         versionData = {
@@ -431,7 +426,7 @@ function embedColorData(platform) {
 }
 
 function trimChangelog(changelog, maxLength) {
-	if (changelog === '') return 'No changelog provided.'
+  if (changelog === '') return 'No changelog provided.';
   const formattedChangelog = formatHtmlChangelog(changelog);
   return formattedChangelog.length > maxLength ? `${formattedChangelog.slice(0, maxLength - 3)}...` : formattedChangelog;
 }

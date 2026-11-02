@@ -28,7 +28,6 @@
     "discord.js": "^14.19.2",
     "express": "^4.18.2",
     "ms": "^2.1.3",
-    "openai": "^3.2.1",
     "pino": "^8.11.0",
     "pino-pretty": "^9.4.0",
     "sequelize": "^6.30.0",
