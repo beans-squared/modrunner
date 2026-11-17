@@ -59,7 +59,7 @@ module.exports = {
           url: `https://modrinth.com/${requestedProject.project_type}/${requestedProject.slug}/version/${rawData[0].id}`,
         };
 
-        logger.debug(versionData);
+        // logger.debug(versionData);
 
         break;
       }

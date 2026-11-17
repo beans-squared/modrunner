@@ -1,5 +1,9 @@
 # Changelog
 
+## \[1.5.8] (2026-11-17)
+
+- Possible fix for general performance degradation by moving the project update check process to a child thread
+
 ## \[1.5.7] (2026-09-22)
 
 - Removed project table sweep code from discord presence update function
