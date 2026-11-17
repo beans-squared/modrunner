@@ -136,12 +136,13 @@ exports.task = async () => {
       const requestedProject = requestedProjects.find((project) => project.id === dbProject.id);
       // Check if the project was actually returned by the API
       if (!requestedProject) {
-        // logger.warn(`Detected a project that does not exist during Modrinth update check: ${dbProject.name} (${dbProject.id})`);
+        logger.debug(`Detected a project that does not exist during Modrinth update check: ${dbProject.name} (${dbProject.id})`);
         continue;
       }
       // Check if the project has been updated
       for (const fileId of requestedProject.versions) {
         if (dbProject.fileIds.includes(fileId)) {
+          logger.debug(`No update detected for ${dbProject.name}.`);
           continue;
         } else {
           logger.info(`Update detected for Modrinth project ${dbProject.name} (${dbProject.id})`);
