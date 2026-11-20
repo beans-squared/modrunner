@@ -45,7 +45,7 @@ exports.task = async () => {
       logger.warn('A request to CurseForge timed out while checking projects for updates.');
     }
   } else {
-    logger.info('No CurseForge projects in database. Skipping.');
+    logger.debug('No CurseForge projects in database. Skipping.');
   }
 
   const requestedProjects = [];
@@ -76,7 +76,7 @@ exports.task = async () => {
       }
     }
   } else {
-    logger.info('No Modrinth projects in database. Skipping.');
+    logger.debug('No Modrinth projects in database. Skipping.');
   }
 
   // Process information returned from the CurseForge API and perform checks
@@ -102,7 +102,7 @@ exports.task = async () => {
         if (requestedMod.latestFilesIndexes.length > 0) {
           // Verify that this latest file's ID is not in the database. If it is, it has already been reported as updated
           if (dbProject.fileIds.includes(requestedMod.latestFilesIndexes[0].fileId)) {
-            logger.debug(`${dbProject.name}'s latest file has already been reported on.`);
+            logger.trace(`${dbProject.name}'s latest file has already been reported on.`);
             await dbProject.updateDate(requestedMod.dateReleased);
             continue;
           }
@@ -122,7 +122,7 @@ exports.task = async () => {
 
         detectedUpdates.push({ requestedMod, dbProject });
       } else {
-        logger.debug(`No update detected for ${dbProject.name}.`);
+        logger.trace(`No update detected for ${dbProject.name}.`);
       }
     }
   }
@@ -136,13 +136,13 @@ exports.task = async () => {
       const requestedProject = requestedProjects.find((project) => project.id === dbProject.id);
       // Check if the project was actually returned by the API
       if (!requestedProject) {
-        logger.debug(`Detected a project that does not exist during Modrinth update check: ${dbProject.name} (${dbProject.id})`);
+        logger.trace(`Detected a project that does not exist during Modrinth update check: ${dbProject.name} (${dbProject.id})`);
         continue;
       }
       // Check if the project has been updated
       for (const fileId of requestedProject.versions) {
         if (dbProject.fileIds.includes(fileId)) {
-          logger.debug(`No update detected for ${dbProject.name}.`);
+          logger.trace(`No update detected for ${dbProject.name}.`);
           continue;
         } else {
           logger.info(`Update detected for Modrinth project ${dbProject.name} (${dbProject.id})`);

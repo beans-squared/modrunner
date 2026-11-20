@@ -43,7 +43,7 @@ module.exports = {
     });
 
     // Project update checking
-    const updateCheckJob = cron.schedule('* * * * *', '../jobs/updateCheck.js', { noOverlap: true });
+    const updateCheckJob = cron.schedule('*/3 * * * *', '../jobs/updateCheck.js', { noOverlap: true });
     updateCheckJob.on('execution:finished', async (ctx) => {
       for (const item of ctx.execution.result) {
         await sendUpdateEmbed(item.requestedProject, item.dbProject, client);
